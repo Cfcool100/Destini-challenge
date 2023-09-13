@@ -26,7 +26,7 @@ class StoryPage extends StatefulWidget {
 }
 
 class _StoryPageState extends State<StoryPage> {
-  final StoryBrain storyBrain = StoryBrain();
+  StoryBrain storyBrain = StoryBrain();
 
   @override
   Widget build(BuildContext context) {
@@ -55,21 +55,25 @@ class _StoryPageState extends State<StoryPage> {
             ),
             Expanded(
               flex: 2,
-              child: TextButton(
-                onPressed: () {
-                  setState(() {
-                    storyBrain.nextStory(1);
-                  });
-                },
-                style: const ButtonStyle(
-                  backgroundColor: MaterialStatePropertyAll(Colors.red),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: 10.0, vertical: 8.0),
-                  child: Text(
-                    storyBrain.getChoice1(),
-                    style: const TextStyle(fontSize: 20.0, color: Colors.white),
+              child: Visibility(
+                visible: storyBrain.buttonShouldBeVisible(),
+                child: TextButton(
+                  onPressed: () {
+                    setState(() {
+                      storyBrain.nextStory(1);
+                    });
+                  },
+                  style: const ButtonStyle(
+                    backgroundColor: MaterialStatePropertyAll(Colors.red),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 10.0, vertical: 8.0),
+                    child: Text(
+                      storyBrain.getChoice1(),
+                      style:
+                          const TextStyle(fontSize: 20.0, color: Colors.white),
+                    ),
                   ),
                 ),
               ),
@@ -79,23 +83,25 @@ class _StoryPageState extends State<StoryPage> {
             ),
             Expanded(
               flex: 2,
-              //TODO: Step 26 - Use a Flutter Visibility Widget to wrap this FlatButton.
-              //TODO: Step 28 - Set the "visible" property of the Visibility Widget to equal the output from the buttonShouldBeVisible() method in the storyBrain.
-              child: TextButton(
-                onPressed: () {
-                  setState(() {
-                    storyBrain.nextStory(2);
-                  });
-                },
-                style: const ButtonStyle(
-                  backgroundColor: MaterialStatePropertyAll(Colors.blue),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: 10.0, vertical: 8.0),
-                  child: Text(
-                    storyBrain.getChoice2(),
-                    style: const TextStyle(fontSize: 20.0, color: Colors.white),
+              child: Visibility(
+                visible: storyBrain.buttonShouldBeVisible(),
+                child: TextButton(
+                  onPressed: () {
+                    setState(() {
+                      storyBrain.nextStory(2);
+                    });
+                  },
+                  style: const ButtonStyle(
+                    backgroundColor: MaterialStatePropertyAll(Colors.blue),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 10.0, vertical: 8.0),
+                    child: Text(
+                      storyBrain.getChoice2(),
+                      style:
+                          const TextStyle(fontSize: 20.0, color: Colors.white),
+                    ),
                   ),
                 ),
               ),
@@ -106,5 +112,3 @@ class _StoryPageState extends State<StoryPage> {
     );
   }
 }
-
-//TODO: Step 29 - Run the app and test it against the Story Outline to make sure you've completed all the steps. The code for the completed app can be found here: https://github.com/londonappbrewery/destini-challenge-completed/
